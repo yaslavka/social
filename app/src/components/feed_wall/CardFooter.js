@@ -1,22 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {likePost, savePost, unLikePost, unSavePost} from "../../redux/actions/postAction";
+import {likePost, unLikePost} from "../../redux/actions/postAction";
 import LikeButton from "./LikeButton";
 
-import UserComents from "../Home/PostUserComents";
 
-const CardFooter = ({auth, post, serverPublic, users, result}) => {
+const CardFooter = ({auth, post, setCom, com}) => {
 
     const [isLike, setIsLike] = useState(false)
     const [loadLike, setLoadLike] = useState(false)
-
-    const [isShare, setIsShare] = useState(false)
-
     const { socket } = useSelector(state => state)
     const dispatch = useDispatch()
 
-    const [saved, setSaved] = useState(false)
-    const [saveLoad, setSaveLoad] = useState(false)
 
     useEffect(() => {
         if(post.likes.find(like => like._id === auth.user._id)){
@@ -41,29 +35,9 @@ const CardFooter = ({auth, post, serverPublic, users, result}) => {
         await dispatch(unLikePost({post, auth, socket}))
         setLoadLike(false)
     }
-    useEffect(() => {
-        if(auth.user.saved.find(id => id === post._id)){
-            setSaved(true)
-        }else{
-            setSaved(false)
-        }
-    },[auth.user.saved, post._id])
 
-    const handleSavePost = async () => {
-        if(saveLoad) return;
 
-        setSaveLoad(true)
-        await dispatch(savePost({post, auth}))
-        setSaveLoad(false)
-    }
 
-    const handleUnSavePost = async () => {
-        if(saveLoad) return;
-
-        setSaveLoad(true)
-        await dispatch(unSavePost({post, auth}))
-        setSaveLoad(false)
-    }
 
     return(
         <>
@@ -78,7 +52,7 @@ const CardFooter = ({auth, post, serverPublic, users, result}) => {
                             handleLike={handleLike}
                             handleUnLike={handleUnLike}
                         />
-                        <div data-like-button-type="comment" title="Комментарий" className={"PostBottomAction PostBottomAction--withBg comment _comment _reply_wrap"} role={"button"} tabIndex={"0"}>
+                        <div data-like-button-type="comment" title="Комментарий" className={"PostBottomAction PostBottomAction--withBg comment _comment _reply_wrap"} role={"button"} tabIndex={"0"} onClick={()=>setCom(!com)}>
                             <span className={"PostBottomAction__icon _like_button_icon"} aria-hidden={true}>
                                 <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                                     <g fill="none" fillRule="evenodd">
@@ -91,16 +65,6 @@ const CardFooter = ({auth, post, serverPublic, users, result}) => {
                             <span className="PostBottomAction__count _like_button_count _counter_anim_container PostBottomAction__count--withBg" aria-hidden="true">{post.comments.length}</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className={"post_replies_header clear_fix"}/>
-            <div className={"replies"}>
-                <div id="replies-61874395_431539" className={"replies_wrap"} role={"button"}
-                     data-can_reply_as_any_group="1"
-                     data-top-ids="431547,431645,431603,431631,431808,431628,431615,431590,431545,431850,431714,431648,431849,431543,431548,431620,431542,431626,431557,431704,431602,431655,431741,431621,431629"
-                     aria-label="Сначала интересные" data-order="smart">
-                   <UserComents post={post} handleSavePost={handleSavePost} handleUnSavePost={handleUnSavePost} result={result} isShare={isShare} setIsShare={setIsShare} saved={saved} setSaved={setSaved} users={users} serverPublic={serverPublic}/>
-
                 </div>
             </div>
         </>

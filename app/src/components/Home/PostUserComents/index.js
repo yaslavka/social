@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import PostDispley from "./PostDispley";
+import CommentDisplay from "./CommentCard";
 
-const UserComents = ({post, serverPublic, users}) => {
+const Comments = ({post, serverPublic}) => {
     const [comments, setComments] = useState([])
     const [showComments, setShowComments] = useState([])
     const [next, setNext] = useState(2)
@@ -19,37 +18,31 @@ const UserComents = ({post, serverPublic, users}) => {
         const newRep = post.comments.filter(cm => cm.reply)
         setReplyComments(newRep)
     }, [post.comments])
-    return (
+
+    return(
         <>
             {
-                users.map((user) => (
-                    <div id={post.comments} className={"reply reply_dived clear  reply_replieable _post"}
-                         data-answering-id={""}>
-                        <div className={"reply_wrap _reply_content _post_content clear_fix"}>
-                            <Link to={`/profile/${user._id}`} className={"reply_image"}>
-                                <div className={"reply_image_stories"}>
-                                    <img loading="lazy"
-                                         src={
-                                             user.avatar
-                                                 ? serverPublic + user.avatar
-                                                 : serverPublic + "defaultProfile.png"
-                                         }
-                                         className={"reply_img"} alt={""}/>
-                                </div>
-                            </Link>
-                            {
-                                showComments.map((comment, index)=>(
-                                    <PostDispley key={index} comment={comment}
-                                                 replyCm={replyComments.filter(item => item.reply === comment._id)}
-                                                 user={user} post={post}/>
-                                ))
-                            }
-                            
-                        </div>
-                    </div>
+                showComments.map((comment, index) => (
+                    <CommentDisplay key={index} comment={comment} post={post}
+                                    replyCm={replyComments.filter(item => item.reply === comment._id)} serverPublic={serverPublic} />
                 ))
+            }
+            {
+                comments.length - next > 0
+                    ? <div className="p-2 border-top"
+                           style={{cursor: 'pointer', color: 'crimson'}}
+                           onClick={() => setNext(next + 10)}>
+                        See more comments...
+                    </div>
+
+                    : comments.length > 2 &&
+                    <div className="p-2 border-top"
+                         style={{cursor: 'pointer', color: 'crimson'}}
+                         onClick={() => setNext(2)}>
+                        Hide comments...
+                    </div>
             }
         </>
     )
 }
-export default UserComents
+export default Comments

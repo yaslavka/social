@@ -2,18 +2,15 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import moment from "moment";
 import CardBody from "../../feed_wall/CardBody";
-import CardHeader from "../../feed_wall/CardHeader";
 import PostdHeader from "./PostHeader";
 
 const Wallmodule = ({
-                        auth, user, dispatch, id, profile, serverPublic,
-                        setOnEdit, setShowFollowers,users,
-                        setShowFollowing, postactio, setPostactio, postacti, setPostacti,
-                        handleLoadMore, load, page, posts, result, setLoad, setPage, setPosts, setResult, children
+                        auth, user, serverPublic,
+                        users, postactio, setPostactio, postacti, setPostacti,
+                        posts, result,  children
                     }) => {
     const [isactive, setIsActive] = useState(false)
     const [wall, setWall] = useState(true)
-    const [readMor, setReadMor] = useState(false)
 
     return (
         <>

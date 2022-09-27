@@ -26,6 +26,7 @@ const InfoRight = ({auth, dispatch, id, profile, serverPublic, postactio, setPos
     const [muz, setMuz] = useState(false)
     const [frinds, setFrinds] = useState(false)
     const [addmedia, setAddmedia] = useState(false)
+
     return(
         <>
             <div className={"wide_column_wrap"}>

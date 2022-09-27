@@ -1,16 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import EditProfile from "./Button/Edit";
 import FollowBtn from "./Button/FollowBtn";
 import MsgBtn from "./Button/MsgBtn";
-import {Avatar} from "@mui/material";
 import Following from "./Following";
 import Followers from "./Followers";
+import MassageModalWindow from "../../modalwindow/messegemodal";
 
 
 const InfoLeft =({auth, setOnEdit, setShowFollowers, setShowFollowing, user, serverPublic})=>{
+    const [messege, setMessege] = useState(false)
     return(
         <>
+            {
+                messege && <MassageModalWindow messege={messege} user={user} serverPublic={serverPublic} setMessege={setMessege}/>
+            }
             <div className={"narrow_column_wrap"} >
                 <div className={"narrow_column"} id="narrow_column" onClick={e=>e.stopPropagation()}>
                     <div className={"page_block page_photo ProfileActions"}>
@@ -65,7 +69,7 @@ const InfoLeft =({auth, setOnEdit, setShowFollowers, setShowFollowing, user, ser
                         <aside aria-label="Действия со страницей">
                             {
                                 auth.user._id !== user._id &&
-                                <MsgBtn user={user}/>
+                                <MsgBtn user={user} messege={messege} setMessege={setMessege}/>
 
                             }
                             <div className={"profile_actions"}>

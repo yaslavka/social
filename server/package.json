@@ -1,6 +1,5 @@
 {
-  "name": "v-network",
-  "proxy": "http://localhost:5000",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",

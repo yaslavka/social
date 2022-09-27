@@ -45,9 +45,9 @@ const Inputaus =
                             ? serverPublic + auth.user.avatar
                             : serverPublic + "defaultProfile.png"} className="post_field_user_image post_field_image_secondary _post_field_image" alt={auth.user.avatar}/>
                     </Link>
-                    <div className="post_field_wrap _emoji_field_wrap" onClick={()=>setHhown(true)} >
+                    <div className="post_field_wrap _emoji_field_wrap" >
                         <div className="emoji_smile_wrap  _emoji_wrap"/>
-                        <div className={shown ? "post_upload_wrap fl_r" :"post_upload_wrap fl_r post_upload_min_wrap"}>
+                        <div className={shown ? "post_upload_wrap fl_r" :"post_upload_wrap fl_r post_upload_min_wrap"} onClick={()=>setHhown(true)}>
                             <div id="post_field_upload" className="post_upload">
                                 <input className="file" type="file" size="28"
                                        multiple={true}

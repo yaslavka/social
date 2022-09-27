@@ -6,7 +6,8 @@ const initialState = {
     posts: [],
     result: 0,
     page: 2,
-    error: false, uploading: false
+    error: false, uploading: false,
+    length:0
 }
 
 const postReducer = (state = initialState, action) => {
@@ -20,9 +21,9 @@ const postReducer = (state = initialState, action) => {
             return { ...state, uploading: false, error: true };
         // belongs to Posts.jsx
         case POST_TYPES.RETREIVING_START:
-            return { ...state, loading: true, error: false };
+            return { ...state, loading: true, error: false, length: action.payload };
         case POST_TYPES.RETREIVING_SUCCESS:
-            return { ...state, posts: action.data, loading: false, error: false };
+            return { ...state, posts: action.data, loading: false, error: false, length: action.payload };
         case POST_TYPES.RETREIVING_FAIL:
             return { ...state, loading: false, error: true };
 
@@ -30,19 +31,23 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [action.payload, action.data, ...state.posts],
-                uploading: true
+                uploading: true,
+                length: action.payload
             };
         case POST_TYPES.LOADING_POST:
             return {
                 ...state,
-                loading: action.payload
+                loading: action.payload,
+                length: action.payload
+
             };
         case POST_TYPES.GET_POSTS:
             return {
                 ...state,
                 posts: action.payload.posts,
                 result: action.payload.result,
-                page: action.payload.page
+                page: action.payload.page,
+                length: action.payload
             };
         case POST_TYPES.UPDATE_POST:
             return {

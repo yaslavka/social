@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
-import CardFooter from "./CardFooter";
 import {getDataAPI} from "../../utils/fetchData";
 import {useSelector} from "react-redux";
 

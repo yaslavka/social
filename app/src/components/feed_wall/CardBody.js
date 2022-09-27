@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import CardFooter from "./CardFooter";
+import InputComment from "../Home/PostUserComents/PostDispley";
 
 const CardBody = ({post, children, result, auth, postaction, serverPublic, setPostaction, users, }) => {
     const [readMore, setReadMore] = useState(false)
-
+    const [com, setCom]= useState(false)
     return(
         <>
             <div className={"post_content"}>
@@ -32,10 +33,13 @@ const CardBody = ({post, children, result, auth, postaction, serverPublic, setPo
                                             serverPublic={serverPublic}
                                             users={users} auth={auth}
                                             key={post._id}
-                                            setPostaction={setPostaction} />
+                                            com={com}
+                                            setCom={setCom}
+                                            setPostaction={setPostaction}
 
+                                />
+                                <InputComment serverPublic={serverPublic} post={post} com={com} setCom={setCom}/>
                             </div>
-
                         </div>
                     </div>
                 </div>

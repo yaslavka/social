@@ -5,7 +5,7 @@ const Postactionsbtns = ({eltt_vis, setEltt_vis, elttvis, setElttvis}) => {
         <>
             <div className="post_actions_btns" id="post_actions_btns">
                 <div className="post_action_btn post_available" id="post_visibility_btn">
-                    <div className="post_action_btn_layout" onClick={()=>setEltt_vis(true)}>
+                    <div className="post_action_btn_layout" onClick={()=>setEltt_vis(!eltt_vis)}>
                         <span className="post_action_btn_text" role={"button"} aria-label="Видно всем">Видно всем</span>
                         <span className="post_action_image_btn" >
                             <svg fill="none" height="8" viewBox="0 0 12 8" width="12" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@ const Postactionsbtns = ({eltt_vis, setEltt_vis, elttvis, setElttvis}) => {
                     </div>
                 </div>
                 <div className="post_action_btn" id="post_discover_category_btn">
-                    <div className="post_action_btn_layout" onClick={()=>setElttvis(true)}>
+                    <div className="post_action_btn_layout" onClick={()=>setElttvis(!elttvis)}>
                         <span className="post_action_btn_text"
                               role={"button"}
                               aria-label="Тематика"

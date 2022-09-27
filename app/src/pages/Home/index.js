@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Createpostnews from "../../components/Home/createpost";
 import {useDispatch, useSelector} from "react-redux";
-import Sidebar from "../../components/Sidebar";
 import {DISCOVER_TYPES, getDiscoverPosts} from "../../redux/actions/discoverAction";
 import {getDataAPI} from "../../utils/fetchData";
 
