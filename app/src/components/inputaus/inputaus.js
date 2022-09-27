@@ -23,7 +23,7 @@ const Inputaus =
     return(
         <>
             <div className="wall_module page_block feed_post_field_wrap">
-                <div id="submit_post_box" className={shown ? "submit_post_box clear_fix _submit_post_box submit_post_box_with_best_friends submit_post_box_with_sitposting shown" : "submit_post_box clear_fix _submit_post_box submit_post_box_with_best_friends submit_post_box_with_sitposting"}>
+                <div id="submit_post_box" className={shown ? "submit_post_box clear_fix _submit_post_box submit_post_box_with_best_friends submit_post_box_with_sitposting shown" : "submit_post_box clear_fix _submit_post_box submit_post_box_with_best_friends submit_post_box_with_sitposting"} onClick={()=>setHhown(true)}>
                     <div id="post_upload_dropbox" className={dropbox_over?"post_upload_dropbox dropbox_over": "post_upload_dropbox"} style={{display:`${dropbox_over? "block":"none"}`}} onMouseEnter={()=>setDropbox_over(false)}>
                         <div className="post_upload_dropbox_inner">
                             <div className="post_upload_label drop_label">

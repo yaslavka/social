@@ -6,7 +6,7 @@ import {getDataAPI} from "../../utils/fetchData";
 
 
 const Home = () => {
-    const [shown, setHhown] = useState(false)
+    const [shown, setHhown] = useState()
     const [dropbox_over, setDropbox_over] = useState(false)
     const [eltt_vis, setEltt_vis] = useState(false)
     const [elttvis, setElttvis] = useState(false)
